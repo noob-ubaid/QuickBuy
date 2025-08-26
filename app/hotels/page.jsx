@@ -14,7 +14,7 @@ const page = async () => {
       </p>
       <div>
         {hotels.map((hotel) => (
-          <Hotel key={hotel.id} hotel={hotel}></Hotel>
+          <Hotel key={hotel._id} hotel={hotel}></Hotel>
         ))}
       </div>
     </div>

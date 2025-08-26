@@ -1,65 +1,76 @@
-import Link from "next/link";
-import React from "react";
-import dbConnect from "../lib/ConnectDb";
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-const page = async() => {
+export default function RegisterPage() {
+  const router = useRouter();
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (!res.ok) {
+        setError(data.error || "Registration failed");
+        return;
+      }
+      // registration success — redirect to login or auto-login
+      router.push("/login"); // or sign in automatically
+    } catch (err) {
+      setLoading(false);
+      setError("Network error");
+      console.error(err);
+    }
+  };
+
   return (
-    <div className="my-20  px-4 md:px-0">
-      <div className="flex items-center justify-center">
-        <div className="card-body max-w-md border dark:bg-white border-[#0F0F0F26] rounded-md">
-          <h2 className="text-2xl font-semibold mt-4 mb-2 border-b border-b-[#0F0F0F26] pb-4 text-center">
-            Register Your Account
-          </h2>
-
-          <form>
-            <label className="label text-[14px] font-medium mb-1">Name</label>
-            <input
-              type="text"
-              className="input w-full border border-gray-300 rounded-md"
-              placeholder="Enter your name "
-            />
-
-            <label className="label text-[14px] mt-2 font-medium mb-1">
-              Enter Your Photo URL
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your photo url"
-              className="input w-full border border-gray-300 rounded-md"
-            />
-
-            <label className="label text-[14px] mt-2 font-medium mb-1">
-              Email
-            </label>
-            <input type="email" className="input w-full border border-gray-300 rounded-md" placeholder="Email" />
-
-            <label className="label text-[14px] mt-2 font-medium mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              className="input w-full border border-gray-300 rounded-md"
-              placeholder="Password"
-            />
-
-            <button
-              type="submit"
-              className="bg-black text-white font-sans font-medium py-2 rounded-md mt-4 w-full"
-            >
-              Register
-            </button>
-
-            <p className="text-center text-[14px] mt-2 font-medium">
-              Already have an account?{" "}
-              <Link href="/login" className="text-red-400 underline">
-                Login
-              </Link>
-            </p>
-          </form>
-        </div>
-      </div>
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-6 rounded shadow">
+        <h2 className="text-2xl mb-4">Create an account</h2>
+        {error && <p className="text-red-500 mb-2">{error}</p>}
+        <input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Full name"
+          className="w-full border px-3 py-2 mb-3 rounded"
+        />
+        <input
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="Email"
+          type="email"
+          className="w-full border px-3 py-2 mb-3 rounded"
+        />
+        <input
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          placeholder="Password"
+          type="password"
+          className="w-full border px-3 py-2 mb-3 rounded"
+        />
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-black text-white py-2 rounded"
+        >
+          {loading ? "Creating..." : "Create account"}
+        </button>
+      </form>
     </div>
   );
-};
-
-export default page;
+}

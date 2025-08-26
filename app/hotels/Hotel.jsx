@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -50,7 +50,7 @@ const Hotel = ({ hotel }) => {
         </div>
         <button
           onClick={() => handleNavigate(hotel._id)}
-          className="w-full bg-black py-2 rounded mt-4 text-white font-medium"
+          className="w-full bg-black py-2 rounded cursor-pointer mt-4 text-white font-medium"
         >
           View details
         </button>
