@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const navLinks = [
     { id: 1, name: "Home", pathname: "/" },
-    { id: 2, name: "Products", pathname: "/products" },
+    { id: 2, name: "Hotels", pathname: "/hotels" },
   ];
   return (
     <div className=" shadow-sm ">
