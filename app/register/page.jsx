@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import dbConnect from "../lib/ConnectDb";
 
-const page = () => {
+const page = async() => {
   return (
     <div className="my-20  px-4 md:px-0">
       <div className="flex items-center justify-center">
