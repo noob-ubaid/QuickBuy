@@ -7,7 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const { data: session, status } = useSession(); 
+  const { data: session, status } = useSession();
 
   const navLinks = [
     { id: 1, name: "Home", pathname: "/" },
@@ -15,7 +15,7 @@ const Navbar = () => {
   ];
 
   const handleSignOut = async () => {
-    await signOut({ redirect: true, callbackUrl: "/" }); 
+    await signOut({ redirect: true, callbackUrl: "/" });
   };
 
   return (
@@ -45,7 +45,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content flex flex-col gap-4 rounded-box z-10 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content flex flex-col gap-4 bg-gray-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
               >
                 {navLinks.map((link) => (
                   <li key={link.id}>
@@ -62,6 +62,14 @@ const Navbar = () => {
                     </Link>
                   </li>
                 ))}
+                {
+                  session && <Link  className={`font-medium ${
+                        pathname === '/addHotels'
+                          ? "text-black font-semibold border-b border-black"
+                          : "text-[#776E6E]"
+                      }`}
+                      href={'/addHotels'}>Add Hotels</Link>
+                }
               </ul>
             </div>
             <div className="flex items-center ml-2 md:ml-0 gap-2">
@@ -86,13 +94,21 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
+               {
+                  session && <Link  className={`font-medium ${
+                        pathname === '/addHotels'
+                          ? "text-black font-semibold border-b border-black"
+                          : "text-[#776E6E]"
+                      }`}
+                      href={'/addHotels'}>Add Hotels</Link>
+                }
             </ul>
           </div>
 
           <div className="navbar-end">
             {status === "loading" ? null : !session ? (
               <Link
-                className="bg-black px-6 py-2 rounded-full text-white"
+                className="bg-black px-6 font-medium font-sans py-2 rounded-full text-white"
                 href="/login"
               >
                 Login
@@ -100,7 +116,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={handleSignOut}
-                className="bg-red-500 px-4 py-2 rounded-full text-white"
+                className="bg-red-500 font-medium font-sans px-4 py-2 rounded-full text-white"
               >
                 Log Out
               </button>
@@ -113,5 +129,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

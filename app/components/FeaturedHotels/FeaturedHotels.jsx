@@ -17,7 +17,7 @@ const FeaturedHotels = async () => {
 
       <div className="grid grid-cols-1 max-w-[1500px] mt-10 md:mt-14 mx-auto md:grid-cols-3 lg:grid-cols-4 gap-12">
         {data.map((hotel) => (
-          <SingleHotel key={hotel.id} hotel={hotel} />
+          <SingleHotel key={hotel._id} hotel={hotel} />
         ))}
       </div>
     </div>

@@ -26,8 +26,7 @@ export default function RegisterPage() {
         setError(data.error || "Registration failed");
         return;
       }
-      // registration success — redirect to login or auto-login
-      router.push("/login"); // or sign in automatically
+      router.push("/login"); 
     } catch (err) {
       setLoading(false);
       setError("Network error");
