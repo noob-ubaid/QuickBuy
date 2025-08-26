@@ -33,7 +33,7 @@ const SingleHotel = ({ hotel }) => {
             <span className="text-[#6B7280E6] font-normal">day</span>
           </p>
           <Link
-            href={`/details/${hotel.id}`}
+            href={`/details/${hotel._id}`}
             className="px-3 py-2 rounded bg-black text-white"
           >
             View Details

@@ -1,11 +1,8 @@
-// "use client";
 import dbConnect from "@/app/lib/ConnectDb";
 import SingleHotel from "./SingleHotel";
 
-const FeaturedHotels = async() => {
-    const data = await dbConnect('products').find({}).toArray()
- 
-
+const FeaturedHotels = async () => {
+  const data = await dbConnect("products").find({}).toArray();
   return (
     <div className="py-14 md:py-24 bg-[#E4EEF84F] px-4 2xl:px-0">
       <div>
@@ -23,15 +20,6 @@ const FeaturedHotels = async() => {
           <SingleHotel key={hotel.id} hotel={hotel} />
         ))}
       </div>
-
-      {/* <div className="text-center mt-10">
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="px-6 py-2 cursor-pointer bg-black text-white rounded-full"
-        >
-          {showAll ? "Show Less" : "Show More"}
-        </button>
-      </div> */}
     </div>
   );
 };
