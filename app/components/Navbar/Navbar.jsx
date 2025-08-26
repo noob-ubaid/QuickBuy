@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import Login from "@/app/login/Login";
+import Login from "@/app/login/page";
 const Navbar = () => {
   const pathname = usePathname();
 
@@ -11,7 +11,7 @@ const Navbar = () => {
     { id: 2, name: "Products", pathname: "/products" },
   ];
   return (
-    <div className="bg-base-100 shadow-sm ">
+    <div className=" shadow-sm ">
       <div className="max-w-[1500px] mx-auto">
         <div className="navbar">
           <div className="navbar-start">
@@ -37,7 +37,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content flex flex-col  gap-4 bg-gray-300 rounded-box z-10 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content flex flex-col  gap-4  rounded-box z-10 mt-3 w-52 p-2 shadow"
               >
                 {navLinks.map((link) => (
                   <li key={link.id}>
