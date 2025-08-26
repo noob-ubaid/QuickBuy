@@ -1,8 +1,16 @@
-import dbConnect from "@/app/lib/ConnectDb";
+"use client"; 
+import { useEffect, useState } from "react";
 import SingleHotel from "./SingleHotel";
 
-const FeaturedHotels = async () => {
-  const data = await dbConnect("products").find({}).toArray();
+const FeaturedHotels = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/hotels")
+      .then((res) => res.json())
+      .then((hotels) => setData(hotels));
+  }, []);
+
   return (
     <div className="py-14 md:py-24 bg-[#E4EEF84F] px-4 2xl:px-0">
       <div>

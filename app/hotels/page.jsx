@@ -1,8 +1,18 @@
-import dbConnect from "../lib/ConnectDb";
+"use client"; 
+
+import { useEffect, useState } from "react";
 import Hotel from "./Hotel";
 
-const page = async () => {
-  const hotels = await dbConnect("products").find({}).toArray();
+const HotelsPage = () => {
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/hotels")
+      .then((res) => res.json())
+      .then((data) => setHotels(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="max-w-[1500px] mx-auto">
       <p className="text-lg md:text-xl lg:text-2xl mt-10 md:mt-16 font-semibold">
@@ -21,4 +31,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default HotelsPage;
