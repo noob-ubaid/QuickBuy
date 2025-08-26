@@ -1,6 +1,6 @@
-# Simple Product Management App
+# Simple Hotel Management App
 
-A simple web application built with **Next.js 15 (App Router)** and **NextAuth.js** that allows users to view products and manage them after logging in. The app features public pages for viewing products and a protected dashboard page to add new products.
+A simple web application built with **Next.js 15 (App Router)** and **NextAuth.js** that allows users to view hotels and manage them after logging in. The app features public pages for viewing hotels and a protected Add Hotels page to add new products.
 
 ---
 
