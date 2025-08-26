@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-
+import Login from "@/app/login/Login";
 const Navbar = () => {
   const pathname = usePathname();
 
@@ -10,7 +10,6 @@ const Navbar = () => {
     { id: 1, name: "Home", pathname: "/" },
     { id: 2, name: "Products", pathname: "/products" },
   ];
-
   return (
     <div className="bg-base-100 shadow-sm ">
       <div className="max-w-[1500px] mx-auto">
@@ -89,6 +88,7 @@ const Navbar = () => {
             >
               Login
             </Link>
+            {/* <Login/> */}
           </div>
         </div>
       </div>
@@ -97,3 +97,9 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
+//! quickbuybyubaid      QuickBuy
